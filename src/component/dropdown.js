@@ -12,8 +12,8 @@ export class MyDropdown extends React.Component{
         return (
             <a className="dropdown-item" href='#' 
                 key= {item.toString()}
-                onClick={()=>this.props.clickLink(item.toString())}>
-                {item.toString()}
+                onClick={()=>this.props.clickLink(item)}>
+                {item.image1.toString()+'/'+item.image2.toString()}
             </a>
            )
         })

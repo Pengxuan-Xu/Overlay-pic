@@ -8,26 +8,29 @@ export class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            //change your default image here
             image1Current: 'pad_overlay_1.png',
-            image2Current: 'overlayed_output.png',
-            image1:['pad_overlay_0.png','pad_overlay_1.png','pad_overlay_2.png'],
-            image2:['overlayed_output.png'],
-            title:['Pad Overlay','Overlayed Output']
+            image2Current: 'overlayed_output1.png',
+            //change your image pair here
+            image:[{image1: 'pad_overlay_0.png', image2:'overlayed_output1.png'},
+            {image1: 'pad_overlay_1.png', image2:'overlayed_output2.png'},
+            {image1: 'pad_overlay_2.png', image2:'overlayed_output3.png'}],
+            //change your drop down menu name here
+            title:['Pad Overlay']
         }
         
     }
 
     componentDidMount() {
-      magnify("image2","image1", 2);
+        magnify("image2","image1", 2)
     }
 
-    onClickImage1(pic){
-        this.setState({image1Current: pic});
+    onClickImage(pic){
+        this.setState({image1Current: pic.image1.toString(),
+            image2Current: pic.image2.toString()},()=>{magnify("image2","image1", 2)});
+        
     }
     
-    onClickImage2(pic){
-        this.setState({image2Current: pic});
-    }
     
 
     render(){
@@ -42,12 +45,9 @@ export class App extends React.Component{
 
                 <div className='nav'>
                     <div className= 'container'>
-                        <MyDropdown list={this.state.image1}
-                            clickLink = {(pic)=>this.onClickImage1(pic)}
+                        <MyDropdown list={this.state.image}
+                            clickLink = {(pic)=>this.onClickImage(pic)}
                             title ={this.state.title[0]} />
-                        <MyDropdown list={this.state.image2}
-                            clickLink = {(pic)=>this.onClickImage2(pic)}
-                            title ={this.state.title[1]} />
                     </div>
 
 

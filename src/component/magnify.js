@@ -1,4 +1,6 @@
 export default function magnify(imgID,imgID2,zoom) {
+
+
     let img = document.getElementById(imgID);
     let img2 = document.getElementById(imgID2);
     /*create magnifier glass:*/
@@ -19,6 +21,11 @@ export default function magnify(imgID,imgID2,zoom) {
     let bw = 3;
     let w = glass.offsetWidth / 2;
     let h = glass.offsetHeight / 2;
+
+    glass.removeEventListener("mousemove", moveMagnifier);
+    img.removeEventListener("mousemove", moveMagnifier);
+    glass.removeEventListener("touchmove", moveMagnifier);
+    img.removeEventListener("touchmove", moveMagnifier);
     /*execute a function when someone moves the magnifier glass over the image:*/
     glass.addEventListener("mousemove", moveMagnifier);
     img.addEventListener("mousemove", moveMagnifier);
